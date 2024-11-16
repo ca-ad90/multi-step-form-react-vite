@@ -1,0 +1,28 @@
+$blue-dark: hsl(213, 96%, 18%);
+$blue-medium: hsl(243, 100%, 62%);
+$blue-light: hsl(228, 100%, 84%);
+$blue-light2: hsl(206, 94%, 87%);
+$red: hsl(354, 84%, 57%);
+$gray: hsl(231, 11%, 63%);
+$light-gray: hsl(229, 24%, 87%);
+$magnolia: hsl(217, 100%, 97%);
+$alabaster: hsl(231, 100%, 99%);
+$white: hsla(0, 0%, 100%, 0.8);
+$black: hsla(0, 0%, 0%, 0.8);
+$font-family-primary: "Ubuntu", sans-serif;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-size-xs: 0.75rem; /* 12px */
+$font-size-sm: 0.875rem; /* 14px */
+$font-size-base: 1rem; /* 16px */
+$font-size-md: 1.125rem; /* 18px */
+$font-size-lg: 1.25rem; /* 20px */
+$font-size-xl: 1.5rem; /* 24px */
+$font-size-xxl: 2rem; /* 32px */
+
+$color-text-primary: $black;
+$color-text-secondary: $gray;
+
+$color-background-primary: $magnolia;
+$color-background-secondary: $alabaster;

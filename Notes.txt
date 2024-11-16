@@ -1,0 +1,46 @@
+Componetns
+Input
+    type
+    validation
+    placeholder
+    label
+    name
+
+Button
+    type:string
+    text:String
+    onClick
+
+StepIcon
+    stepNumber/icon:number/svg-file
+    active:boolean
+    title:string
+            responnsive:
+            title only in desktop
+
+RadioWrapper
+    options=>children<RadioOption
+
+RadioOption
+    title
+    text=children?
+    icon
+
+SwitchSelect
+    options:array[opt1,opt2]
+    currentValue
+CheckBoxWrapper
+    options=>children<CheckBoxOption>
+
+CheckBoxOption
+    title
+    test
+    price
+
+
+Parts:
+MainContentWrapper
+
+ProgressWrapper
+
+Form
