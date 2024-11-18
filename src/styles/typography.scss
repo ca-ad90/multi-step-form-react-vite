@@ -35,36 +35,36 @@ h6 {
 }
 
 h1 {
-    font-size: var(--font-size-xxl);
+    font-size: $font-size-xxl;
 }
 
 h2 {
-    font-size: var(--font-size-xl);
+    font-size: $font-size-xl;
 }
 
 h3 {
-    font-size: var(--font-size-lg);
+    font-size: $font-size-lg;
 }
 
 h4 {
-    font-size: var(--font-size-md);
+    font-size: $font-size-md;
 }
 
 h5 {
-    font-size: var(--font-size-base);
+    font-size: $font-size-base;
 }
 
 h6 {
-    font-size: var(--font-size-sm);
+    font-size: $font-size-sm;
 }
 
 p {
-    font-size: var(--font-size-base);
+    font-size: $font-size-base;
     line-height: 1.5;
 }
 
 small {
-    font-size: var(--font-size-xs);
+    font-size: $font-size-xs;
 }
 input:placeholder-shown {
     color: $color-text-secondary;

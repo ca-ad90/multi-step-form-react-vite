@@ -1,0 +1,14 @@
+@use "../styles/variables" as *;
+
+.main-content {
+    @include flex-center;
+    flex-direction: column;
+    flex: 1 1 630px;
+    padding-top: 40px;
+}
+.main-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+}

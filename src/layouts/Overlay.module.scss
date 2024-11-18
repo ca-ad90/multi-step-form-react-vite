@@ -1,0 +1,50 @@
+@use "../styles/variables" as *;
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-position: 50% 50%;
+    background-size: auto;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    @include flex-center;
+}
+.btn {
+    pointer-events: all;
+    position: absolute;
+    background-color: black;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    &:hover {
+        @extend .btn;
+        background-color: grey;
+    }
+    &_overlay {
+        @extend .btn;
+        top: 0;
+        left: 0;
+        &_close {
+            @extend .btn_overlay;
+            background-color: red;
+        }
+        &_open {
+            @extend .btn_overlay;
+            background-color: black;
+        }
+    }
+    &_img {
+        @extend .btn;
+        &_prev {
+            @extend .btn_img;
+            left: 0;
+        }
+        &_next {
+            @extend .btn_img;
+            right: 0;
+        }
+    }
+}
