@@ -1,4 +1,5 @@
-import "./MainContentContainer.scss";
+import { Button } from "../components/Button";
+import styles from "./MainContentContainer.module.scss";
 import { ReactNode } from "react";
 //import { currentPageContext } from "../currentContext";
 interface MainContentContainerProps {
@@ -15,29 +16,20 @@ export default function MainContentContainer({
 
     return (
         <>
-            <div className="main-content">
-                <div className="main-wrapper">
+            <div className={styles.mainContent}>
+                <div className={styles.mainWrapper}>
                     <>{children}</>
-                    <div
-                        style={{
-                            position: "absolute",
-                            bottom: 0,
-                            height: "50px",
-                            width: "100%",
-                            background: "red",
-                        }}>
-                        <button
-                            type="button"
-                            onClick={() => handlePageChange(pages.current + 1)}
-                            className="next">
-                            NEXT
-                        </button>
-                        <button
-                            type="button"
+                    <div className={styles.buttonWrapper}>
+                        <Button
+                            onClick={() => handlePageChange(pages.current + 1)}>
+                            Next Step
+                        </Button>
+                        <Button
+                            secondary
                             onClick={() => handlePageChange(pages.current - 1)}
-                            className="PREV">
-                            PREV
-                        </button>
+                            disabled={pages.current === pages.length - 1}>
+                            Go Back
+                        </Button>
                     </div>
                 </div>
             </div>

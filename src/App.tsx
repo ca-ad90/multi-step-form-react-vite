@@ -1,8 +1,10 @@
 import "./App.scss";
 import MultiPagedFrom from "./layouts/MultiPageForm";
-import OverLay from "./layouts/OverLay";
+
 import Page from "./layouts/Page";
 import { useState } from "react";
+import OverLay from "./layouts/OverLay";
+
 function App() {
     const imgs = [
         "design/active-states-step-1.jpg",
