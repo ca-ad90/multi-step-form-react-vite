@@ -7,13 +7,13 @@ export interface ButtonProps {
     disabled?: boolean;
     children?: ReactNode;
 }
-export const Button = ({
+export function Button({
     secondary,
     type = "button",
     onClick,
     disabled,
     children,
-}: ButtonProps) => {
+}: ButtonProps) {
     return (
         <button
             data-type={secondary ? "secondary" : "primary"}
@@ -24,4 +24,4 @@ export const Button = ({
             <span>{children}</span>
         </button>
     );
-};
+}

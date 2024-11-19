@@ -1,6 +1,6 @@
 import "./App.scss";
 import MultiPagedFrom from "./layouts/MultiPageForm";
-
+import { Input } from "./components/Input";
 import Page from "./layouts/Page";
 import { useState } from "react";
 import OverLay from "./layouts/OverLay";
@@ -34,11 +34,7 @@ function App() {
         <>
             <MultiPagedFrom>
                 <Page title="First Page" text="this is the first page">
-                    <input
-                        value={value}
-                        onInput={(e) =>
-                            setValue((e.target as HTMLInputElement).value)
-                        }></input>
+                    <Input required label="test"></Input>
                     {value}
                     <button
                         onClick={() => {

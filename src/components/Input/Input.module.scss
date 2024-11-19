@@ -1,0 +1,27 @@
+@use "../../styles/variables" as *;
+.label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    & > span {
+        font-size: $font-size-sm;
+    }
+    .input {
+        width: 100%;
+        font-weight: 800;
+        padding: 15px;
+        border-radius: 0.5em;
+        border: 2px solid $light-gray;
+        cursor: pointer;
+        &:focus {
+            border: 2px solid $blue-medium;
+            outline: none;
+        }
+        &:invalid {
+            border-color: $red;
+        }
+        &:required {
+            border-color: green;
+        }
+    }
+}

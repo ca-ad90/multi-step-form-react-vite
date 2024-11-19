@@ -4,7 +4,7 @@ import ProgressSidebar from "./ProgressSidebar";
 import MainContentContainer from "./MainContentContainer";
 /*
 Alternative way to share page state between components
-import { currentPageContext } from "../currentContext";
+import { currentPageContext } from "../formContext";
  */
 export default function MultiPageForm({
     children,
