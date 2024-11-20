@@ -3,13 +3,28 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    & > span {
+    .title,
+    .errorMsg {
         font-size: $font-size-sm;
+        line-height: 2em;
+        display: inline-block;
+    }
+    .title {
+        font-weight: 500;
+    }
+    .errorMsg {
+        font-weight: 800;
+        color: $red;
+    }
+    .textContainer {
+        display: flex;
+        justify-content: space-between;
     }
     .input {
         width: 100%;
         font-weight: 800;
-        padding: 15px;
+        line-height: 1.5em;
+        padding: 10px 15px;
         border-radius: 0.5em;
         border: 2px solid $light-gray;
         cursor: pointer;
@@ -17,11 +32,8 @@
             border: 2px solid $blue-medium;
             outline: none;
         }
-        &:invalid {
-            border-color: $red;
-        }
-        &:required {
-            border-color: green;
-        }
     }
+}
+.isInvalid {
+    border-color: $red !important;
 }

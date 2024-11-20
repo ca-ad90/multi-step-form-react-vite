@@ -1,10 +1,10 @@
 import "./MultiPageForm.scss";
-import { ReactElement, useState } from "react";
+import { ReactElement, useRef, useState } from "react";
 import ProgressSidebar from "./ProgressSidebar";
 import MainContentContainer from "./MainContentContainer";
 /*
 Alternative way to share page state between components
-import { currentPageContext } from "../formContext";
+import { currentPageContext } from "../currentContext";
  */
 export default function MultiPageForm({
     children,
@@ -15,7 +15,8 @@ export default function MultiPageForm({
         current: 0,
         length: children.length,
     });
-
+    console.log(children);
+    const form = useRef<HTMLFormElement>(null);
     const handlePageChange = (nextPage: number) => {
         console.log(nextPage);
         const newPage =
@@ -31,7 +32,7 @@ export default function MultiPageForm({
     };
     return (
         <>
-            <form className="multi-page-form">
+            <form ref={form} className="multi-page-form">
                 {/*           <currentPageContext.Provider value={{ pages, setPages }}> */}
                 <ProgressSidebar
                     pages={pages}
@@ -41,7 +42,7 @@ export default function MultiPageForm({
                 <MainContentContainer
                     handlePageChange={handlePageChange}
                     pages={pages}>
-                    {children && children[pages.current]}
+                    {children}
                 </MainContentContainer>
                 {/*         </currentPageContext.Provider> */}
             </form>

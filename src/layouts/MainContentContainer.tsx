@@ -1,11 +1,11 @@
 import { Button } from "../components/Button";
 import styles from "./MainContentContainer.module.scss";
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 //import { currentPageContext } from "../currentContext";
 interface MainContentContainerProps {
     handlePageChange: (currentPage: number) => void;
     pages: { current: number; length: number };
-    children: ReactNode;
+    children: ReactNode[];
 }
 export default function MainContentContainer({
     handlePageChange,
@@ -13,22 +13,61 @@ export default function MainContentContainer({
     children,
 }: MainContentContainerProps) {
     //const { currentPage, setCurrentPage } = useContext(currentPageContext);
-
+    const fieldSet = useRef<(HTMLFieldSetElement | null)[]>([]);
+    function changePage(nextPage: number) {
+        console.log(nextPage, { x: fieldSet.current[pages.current] });
+        if (fieldSet.current[pages.current] && nextPage > pages.current) {
+            let valid = true;
+            const inputs = Array.from(
+                fieldSet.current[pages.current]!.elements,
+            ) as (HTMLSelectElement | HTMLInputElement)[];
+            for (const inp of inputs) {
+                if (
+                    inp instanceof HTMLInputElement ||
+                    inp instanceof HTMLSelectElement
+                ) {
+                    if (!inp.reportValidity()) {
+                        valid = false;
+                    }
+                }
+            }
+            if (!valid) return;
+        }
+        handlePageChange(nextPage);
+    }
     return (
         <>
             <div className={styles.mainContent}>
                 <div className={styles.mainWrapper}>
-                    <>{children}</>
+                    {children &&
+                        children.map((child, index) => (
+                            <fieldset
+                                id={`fieldset${index}`}
+                                ref={(e) => {
+                                    fieldSet.current[index] = e;
+                                }}
+                                key={index}
+                                style={{
+                                    display:
+                                        index === pages.current
+                                            ? "block"
+                                            : "none",
+                                }}>
+                                {child}
+                            </fieldset>
+                        ))}
+
                     <div className={styles.buttonWrapper}>
                         <Button
-                            onClick={() => handlePageChange(pages.current + 1)}>
-                            Next Step
-                        </Button>
-                        <Button
                             secondary
-                            onClick={() => handlePageChange(pages.current - 1)}
-                            disabled={pages.current === pages.length - 1}>
+                            onClick={() => changePage(pages.current - 1)}>
                             Go Back
+                        </Button>
+                        <button type="submit">TEST</button>
+                        <Button
+                            onClick={() => changePage(pages.current + 1)}
+                            disabled={pages.current === pages.length}>
+                            Next Step
                         </Button>
                     </div>
                 </div>

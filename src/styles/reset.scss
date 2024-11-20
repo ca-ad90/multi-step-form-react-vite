@@ -17,11 +17,18 @@ h5,
 h6,
 p,
 ol,
-ul {
+ul,
+fieldset {
     margin: 0;
     padding: 0;
 }
-
+fieldset {
+    min-inline-size: min-content;
+    margin-inline: 0;
+    border: none;
+    padding-block: 0;
+    padding-inline: 0;
+}
 /* Remove list styles */
 ol,
 ul {
