@@ -63,7 +63,6 @@ export default function MainContentContainer({
                             onClick={() => changePage(pages.current - 1)}>
                             Go Back
                         </Button>
-                        <button type="submit">TEST</button>
                         <Button
                             onClick={() => changePage(pages.current + 1)}
                             disabled={pages.current === pages.length}>

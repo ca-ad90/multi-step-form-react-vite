@@ -37,11 +37,6 @@ function App() {
                     <Input type="text" required label="Name"></Input>
                     <Input required type="email" label="Email"></Input>
                     <Input type="phone" label="Phone Number"></Input>
-                    <select name="test" id="t">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
                 </Page>
                 <Page title="Second Page" text="this is the first page">
                     <Input type="text" required label="Name2"></Input>
