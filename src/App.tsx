@@ -1,6 +1,7 @@
 import "./App.scss";
 import MultiPagedFrom from "./layouts/MultiPageForm";
 import { Input } from "./components/Input";
+import { CheckBox } from "./components/CheckBox";
 import Page from "./layouts/Page";
 
 import OverLay from "./layouts/OverLay";
@@ -39,9 +40,13 @@ function App() {
                     <Input type="phone" label="Phone Number"></Input>
                 </Page>
                 <Page title="Second Page" text="this is the first page">
-                    <Input type="text" required label="Name2"></Input>
-                    <Input type="email" label="Email3"></Input>
-                    <Input type="phone" label="Phone Number3"></Input>
+                    <CheckBox
+                        name="addon"
+                        label="Online Access"
+                        price="+1$"
+                        value="1"
+                        descr="Access multi online"
+                        checked={false}></CheckBox>
                 </Page>
             </MultiPagedFrom>
             <OverLay imgs={imgs}></OverLay>
