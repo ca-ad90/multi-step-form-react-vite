@@ -11,7 +11,7 @@ export default function ProgressSidebar({
 }: ProgressSidebarProps) {
     return (
         <>
-            <div className={style["progress-sidebar"]}>
+            <div className={style.progressSidebar}>
                 {titles.map((title, i) => (
                     <button
                         type="button"
