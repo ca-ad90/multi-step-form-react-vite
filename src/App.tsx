@@ -5,6 +5,7 @@ import { CheckBox } from "./components/CheckBox";
 import Page from "./layouts/Page";
 
 import OverLay from "./layouts/OverLay";
+import { Radiobutton } from "./components/Radiobutton";
 
 function App() {
     const imgs = [
@@ -40,13 +41,37 @@ function App() {
                     <Input type="phone" label="Phone Number"></Input>
                 </Page>
                 <Page title="Second Page" text="this is the first page">
-                    <CheckBox
-                        name="addon"
-                        label="Online Access"
-                        price="+1$"
-                        value="1"
-                        descr="Access multi online"
-                        checked={false}></CheckBox>
+                    <div
+                        style={{
+                            display: "flex",
+                            gap: "1rem",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            height: "100%",
+                            width: "100%",
+                        }}>
+                        <Radiobutton
+                            name="addon"
+                            label="Online Access"
+                            price="+1$"
+                            value="1"
+                            icon="../src/assets/images/icon-arcade.svg"
+                            checked={false}></Radiobutton>
+                        <Radiobutton
+                            name="addon"
+                            label="Online Access"
+                            price="+2$"
+                            value="2"
+                            icon="../src/assets/images/icon-arcade.svg"
+                            checked={false}></Radiobutton>
+                        <Radiobutton
+                            name="addon"
+                            label="Online Access"
+                            price="+2$"
+                            value="2"
+                            icon="../src/assets/images/icon-arcade.svg"
+                            checked={false}></Radiobutton>
+                    </div>
                 </Page>
             </MultiPagedFrom>
             <OverLay imgs={imgs}></OverLay>

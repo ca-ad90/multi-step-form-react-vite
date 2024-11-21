@@ -1,0 +1,52 @@
+@use "../../styles/variables" as *;
+.label {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: $white;
+    border-radius: 0.5em;
+    border: 2px solid $light-gray;
+    padding: 20px 15px;
+    &:has(input:checked) {
+        background-color: $magnolia;
+    }
+    &:hover {
+        border-color: $blue-medium;
+    }
+}
+.radio {
+    appearance: none;
+}
+.icon {
+    height: 75px;
+}
+.textContainer {
+    display: block;
+    flex-direction: column;
+    width: 100%;
+    white-space: nowrap;
+    margin-left: 25px;
+    & span {
+        display: block;
+    }
+}
+.text,
+.descr {
+    display: inline-block;
+}
+.text {
+    font-weight: 800;
+}
+.descr {
+    color: $gray;
+    font-size: $font-size-base;
+}
+.price {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: $blue-medium;
+}
