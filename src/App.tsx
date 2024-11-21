@@ -5,6 +5,7 @@ import Page from "./layouts/Page";
 
 import OverLay from "./layouts/OverLay";
 import { Radiobutton } from "./components/Radiobutton";
+import { SwitchButton } from "./components/SwitchBtn";
 
 function App() {
     const imgs = [
@@ -71,6 +72,9 @@ function App() {
                             icon="../src/assets/images/icon-arcade.svg"
                             checked={false}></Radiobutton>
                     </div>
+                </Page>
+                <Page title="Third Page" text="this is the first page">
+                    <SwitchButton />
                 </Page>
             </MultiPagedFrom>
             <OverLay imgs={imgs}></OverLay>

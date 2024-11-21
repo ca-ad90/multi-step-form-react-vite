@@ -1,0 +1,55 @@
+@use "../../styles/variables" as *;
+.container {
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr;
+    width: 100%;
+    column-gap: 20px;
+    padding: 15px;
+    background-color: $light-gray;
+    border-radius: 10px;
+    & input {
+        height: 0;
+        width: 0;
+    }
+}
+.label {
+}
+.alt1 {
+    width: 100%;
+    text-align: right;
+    justify-self: end;
+}
+.alt2 {
+    justify-self: start;
+}
+.switch {
+    position: relative;
+    align-content: center;
+    background-color: $blue-dark;
+    border-radius: 100px;
+    display: flex;
+    padding: 3px;
+    width: 40px;
+    height: 21px;
+}
+.ball {
+    background-color: $white;
+    border-radius: 50%;
+    height: 15px;
+    aspect-ratio: 1;
+    position: relative;
+    transition: all 0.3s;
+}
+.container:has(* input[value="0"]:checked) {
+    .ball {
+        margin-left: 0;
+    }
+}
+.container:has(input[value="1"]:checked) {
+    .ball {
+        margin-left: calc(100% - 15px);
+    }
+}
+label:has(input:checked) {
+    font-weight: 800;
+}
