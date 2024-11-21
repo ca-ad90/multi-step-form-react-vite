@@ -1,7 +1,6 @@
 import "./App.scss";
 import MultiPagedFrom from "./layouts/MultiPageForm";
 import { Input } from "./components/Input";
-import { CheckBox } from "./components/CheckBox";
 import Page from "./layouts/Page";
 
 import OverLay from "./layouts/OverLay";

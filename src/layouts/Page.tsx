@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import styles from "./Page.module.scss";
 interface PageProps {
     title: string;
     text: string;
@@ -10,7 +11,7 @@ export default function Page(props: PageProps) {
         <>
             <h1>{title}</h1>
             <p id={`page${1}`}>{text}</p>
-            {children}{" "}
+            <div className={styles.content}>{children}</div>
         </>
     );
 }
