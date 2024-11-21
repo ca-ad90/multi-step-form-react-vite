@@ -26,9 +26,11 @@ export function Radiobutton({
             <div className={styles.icon}>
                 <img src={icon} alt="" />
             </div>
-            <div className={styles.textContainer}></div>
-            <span className={styles.text}>{label} </span>
-            <span className={styles.descr}>{price}</span>
+            <div className={styles.textContainer}>
+                {" "}
+                <span className={styles.text}>{label} </span>
+                <span className={styles.descr}>{price}</span>
+            </div>
         </label>
     );
 }
