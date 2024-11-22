@@ -6,8 +6,9 @@
     background-color: $white;
     border-radius: 0.5em;
     border: 2px solid $light-gray;
-    padding: 20px 15px;
-
+    padding: 20px 15px 15px 15px;
+    height: 160px;
+    justify-content: space-between;
     &:has(input:checked) {
         background-color: $magnolia;
     }
@@ -22,30 +23,26 @@
 }
 .radio {
     appearance: none;
+    position: absolute;
+    height: 0px;
 }
 .icon {
-    height: 75px;
 }
 .textContainer {
     display: block;
     flex-direction: column;
-    width: 100%;
-    white-space: nowrap;
-    margin-left: 25px;
     & span {
         display: block;
     }
 }
 .text,
-.descr {
-    display: inline-block;
-}
 .text {
     font-weight: 800;
+    line-height: 1.5;
 }
 .descr {
     color: $gray;
-    font-size: $font-size-base;
+    font-size: $font-size-sm;
 }
 .price {
     height: 100%;
