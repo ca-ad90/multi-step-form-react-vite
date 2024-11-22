@@ -2,12 +2,25 @@
 $button-primary-color: $blue-dark;
 $button-secondary-color: $white;
 .button {
+    position: relative;
     font-weight: 500;
     border-radius: 0.5rem;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     box-shadow: inset 0px 0px 0px 0px transparent;
-
+    &:focus-visible {
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: calc(10px + 100%);
+            height: calc(10px + 100%);
+            border: 3px solid $blue-dark;
+            border-radius: inherit;
+            top: -5px;
+            left: -5px;
+        }
+    }
     &[data-type="secondary"] {
         --button-color: #{$button-secondary-color};
         color: $gray;

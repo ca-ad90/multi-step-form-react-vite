@@ -1,11 +1,13 @@
-import { createContext, MutableRefObject } from "react";
-export interface formContextProps {
-    pages: { current: number; length: number };
-    form: MutableRefObject<HTMLFormElement | null>;
-    setPages: (pages: { current: number; length: number }) => void;
+import { createContext } from "react";
+type formType = {
+    [key: string]: string;
+};
+export interface FormContextProps {
+    form: formType;
+    setForm: (form: formType) => void;
 }
-export const formContext = createContext<formContextProps>({
-    pages: { current: 0, length: 0 },
-    form: { current: null },
-    setPages: () => {},
+
+export const FormContext = createContext<FormContextProps>({
+    form: {},
+    setForm: () => {},
 });

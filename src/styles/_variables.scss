@@ -50,3 +50,22 @@ $color-background-secondary: $alabaster;
     align-items: center;
     justify-content: center;
 }
+@mixin focusPseudo {
+    position: relative;
+    &::before {
+        --_gap: var(--gap, 10px);
+        --_radius: var(--radius, 15px);
+        --size: calc(calc(var(--_gap) * 2) + 100%);
+        --offset: calc(var(--_gap) * -1);
+        content: "";
+        display: flex;
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        top: var(--offset);
+        left: var(--offset);
+        border: 3px solid;
+        border-radius: var(--_radius, inherit);
+        border-color: var(--focusColor, $blue-dark);
+    }
+}

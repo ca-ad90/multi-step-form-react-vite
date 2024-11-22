@@ -15,8 +15,10 @@ export default function MultiPageForm({
         current: 0,
         length: children.length,
     });
-    console.log(children);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const form = useRef<HTMLFormElement>(null);
+
     const handlePageChange = (nextPage: number) => {
         console.log(nextPage);
         const newPage =

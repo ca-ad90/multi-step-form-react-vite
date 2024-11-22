@@ -16,6 +16,7 @@ export function Button({
 }: ButtonProps) {
     return (
         <button
+            tabIndex={0}
             data-type={secondary ? "secondary" : "primary"}
             disabled={disabled}
             onClick={onClick}

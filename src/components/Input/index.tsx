@@ -1,29 +1,31 @@
-import { useRef, useState } from "react";
+import { useState, ChangeEvent } from "react";
 import styles from "./Input.module.scss";
 export interface InputProps {
     label: string;
+    name: string;
     type?: "text" | "email" | "phone";
     placeholder?: string;
     error?: boolean;
     errorMessage?: string;
     required?: boolean;
     disabled?: boolean;
+    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 export function Input({
     label,
+    name,
     type = "text",
     placeholder,
     error,
     errorMessage,
     required,
     disabled,
+    handleChange,
 }: InputProps) {
     const [invalid, setInvalid] = useState(false);
-    const inpRef = useRef<HTMLInputElement>(null);
-    const [errMsg, setErrMsg] = useState("");
 
-    function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-        console.log("onChange", !inpRef.current?.value);
+    const [errMsg, setErrMsg] = useState("");
+    function checkInput(e: React.ChangeEvent<HTMLInputElement>) {
         let isInvalid = false;
         let err;
         if (required && !e.target.value) {
@@ -45,9 +47,13 @@ export function Input({
             }
             err = errorMessage || err;
         }
-        setErrMsg(err);
+        if (isInvalid) {
+            setErrMsg(err);
+            e.target.setCustomValidity(err);
+        } else {
+            e.target.setCustomValidity("");
+        }
         setInvalid(isInvalid);
-
         return;
     }
     // AI generated function to validate email
@@ -56,16 +62,11 @@ export function Input({
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase()) || email.trim() === "";
     }
-    // AI generated function to validate phone
-    function validatePhone(phone: string) {
-        const re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
-        re.test(String(phone).toLowerCase());
-        return true;
-    }
 
-    ["This Field is required", "Invalid input"].forEach((msg) => {
-        console.log(msg);
-    });
+    function validatePhone(phone: string) {
+        const re = /^(\+\d{1,2}\s?-?)?(\d\s?)*\d$/;
+        return re.test(String(phone).toLowerCase());
+    }
     return (
         <>
             <label htmlFor={label} className={styles.label}>
@@ -79,12 +80,12 @@ export function Input({
                     )}
                 </div>
                 <input
-                    ref={inpRef}
+                    name={name}
                     id={label.replace(/\s/g, "-").toLocaleLowerCase()}
-                    name={label}
                     type={type}
                     placeholder={placeholder}
-                    onBlur={onChange}
+                    onBlur={checkInput}
+                    onChange={handleChange}
                     required={required}
                     disabled={disabled}
                     className={[

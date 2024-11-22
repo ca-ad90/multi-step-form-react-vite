@@ -14,3 +14,7 @@ body {
     min-height: 100svh;
     position: relative;
 }
+button:focus-visible {
+    --broder-color: green;
+    @include focusPseudo;
+}

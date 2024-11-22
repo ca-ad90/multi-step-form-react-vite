@@ -7,13 +7,15 @@
     padding: 15px;
     background-color: $light-gray;
     border-radius: 10px;
+    &:has(input:focus-visible) {
+        @include focusPseudo;
+    }
     & input {
         height: 0;
         width: 0;
     }
 }
-.label {
-}
+
 .alt1 {
     width: 100%;
     text-align: right;
@@ -31,6 +33,9 @@
     padding: 3px;
     width: 40px;
     height: 21px;
+    &:focus-visible {
+        @include focusPseudo;
+    }
 }
 .ball {
     background-color: $white;
@@ -40,16 +45,16 @@
     position: relative;
     transition: all 0.3s;
 }
-.container:has(* input[value="0"]:checked) {
+.container:has(.alt1 input:checked) {
     .ball {
         margin-left: 0;
     }
 }
-.container:has(input[value="1"]:checked) {
+.container:has(.alt2 input:checked) {
     .ball {
         margin-left: calc(100% - 15px);
     }
 }
-label:has(input:checked) {
+.label:has(input:checked) {
     font-weight: 800;
 }

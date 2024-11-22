@@ -1,34 +1,83 @@
 import styles from "./Radiobutton.module.scss";
+import { useEffect, useState } from "react";
 interface RadiobuttonProps {
-    price: string;
+    price: [number, number];
     label: string;
-    value: string;
     icon: string;
     name: string;
-    checked: boolean;
+    form?: { [key: string]: string | string[] | number | number[] };
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export function Radiobutton({
     name,
     label,
     price,
-    value,
     icon,
+    form,
+    handleChange,
 }: RadiobuttonProps) {
+    function idGen() {
+        let str = "";
+        const randomChar = (type: number) => {
+            let min, max;
+            switch (type) {
+                case 0:
+                    min = "a".charCodeAt(0);
+                    max = "z".charCodeAt(0);
+                    break;
+                case 1:
+                    min = "A".charCodeAt(0);
+                    max = "Z".charCodeAt(0);
+                    break;
+                case 2:
+                    min = 0;
+                    max = 9;
+                    break;
+                default:
+                    min = 0;
+                    max = 9;
+            }
+            const code = Math.floor(Math.random() * (max - min + 1) + max);
+            if (type < 2) {
+                return String.fromCharCode(code);
+            } else {
+                return code;
+            }
+        };
+        do {
+            const char = randomChar(Math.floor(Math.random() * 3));
+            str += char;
+        } while (str.length > 5);
+        return str;
+    }
+    const id = `${name}-${idGen()}`;
+    const [currentPrice, setCurrentPrice] = useState(price[0]);
+    useEffect(() => {
+        if (form && (form!["period"] as string) === "year") {
+            setCurrentPrice(price[0]);
+        }
+    }, [form]);
     return (
-        <label className={styles.label}>
+        <label htmlFor={id} className={styles.label}>
             <input
+                id={id}
+                tabIndex={0}
                 type="radio"
                 name={name}
                 className={styles.radio}
                 required
-                value={value}
+                value={currentPrice}
+                onChange={handleChange}
             />
             <div className={styles.icon}>
                 <img src={icon} alt="" />
             </div>
             <div className={styles.textContainer}></div>
             <span className={styles.text}>{label} </span>
-            <span className={styles.descr}>{price}</span>
+            <span className={styles.descr}>{`$${currentPrice}/${
+                (form && form.period && (form.period as string).substring(2)) ||
+                "mo"
+            }`}</span>
         </label>
     );
 }

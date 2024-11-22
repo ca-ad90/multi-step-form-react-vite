@@ -1,6 +1,13 @@
 import { Button } from "../components/Button";
 import styles from "./MainContentContainer.module.scss";
-import { ReactNode, useRef } from "react";
+import {
+    cloneElement,
+    isValidElement,
+    ReactElement,
+    ReactNode,
+    useRef,
+} from "react";
+import Page from "./Page";
 //import { currentPageContext } from "../currentContext";
 interface MainContentContainerProps {
     handlePageChange: (currentPage: number) => void;
@@ -16,6 +23,9 @@ export default function MainContentContainer({
     const fieldSet = useRef<(HTMLFieldSetElement | null)[]>([]);
     function changePage(nextPage: number) {
         console.log(nextPage, { x: fieldSet.current[pages.current] });
+        console.log(
+            fieldSet.current[pages.current] && nextPage > pages.current,
+        );
         if (fieldSet.current[pages.current] && nextPage > pages.current) {
             let valid = true;
             const inputs = Array.from(
@@ -27,6 +37,7 @@ export default function MainContentContainer({
                     inp instanceof HTMLSelectElement
                 ) {
                     if (!inp.reportValidity()) {
+                        console.log((inp.name, inp.value));
                         valid = false;
                     }
                 }
@@ -53,7 +64,12 @@ export default function MainContentContainer({
                                             ? "block"
                                             : "none",
                                 }}>
-                                {child}
+                                {isValidElement(child) &&
+                                    cloneElement(
+                                        child as ReactElement<typeof Page>,
+
+                                        { open: index === pages.current },
+                                    )}
                             </fieldset>
                         ))}
 
