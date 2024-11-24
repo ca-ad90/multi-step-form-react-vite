@@ -5,7 +5,7 @@ import Page from "./layouts/Page";
 import { FormContext } from "./contexts/formContext";
 import { useFormHook } from "./hooks/useFromHook";
 import OverLay from "./layouts/OverLay";
-import { Radiobutton } from "./components/Radiobutton";
+import { Radiobutton, RadioGroup } from "./components/Radiobutton";
 import { SwitchButton } from "./components/SwitchBtn";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
         <>
             <FormContext.Provider value={{ form, setForm }}>
                 <MultiPagedFrom>
-                    <Page title="First Page" text="this is the first page">
+                    <Page title="First Page" text="this is the first page" open>
                         <Input
                             type="text"
                             required
@@ -57,16 +57,11 @@ function App() {
                             label="Phone Number"
                             handleChange={handleChange}></Input>
                     </Page>
-                    <Page title="Second Page" text="this is the first page">
-                        <div
-                            style={{
-                                display: "flex",
-                                gap: "1rem",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                height: "100%",
-                                width: "100%",
-                            }}>
+                    <Page
+                        title="Second Page"
+                        text="this is the first page"
+                        open>
+                        <RadioGroup>
                             <Radiobutton
                                 name="addon"
                                 label="Online Access"
@@ -90,7 +85,7 @@ function App() {
                                 icon="../src/assets/images/icon-arcade.svg"
                                 form={form}
                                 handleChange={handleChange}></Radiobutton>
-                        </div>
+                        </RadioGroup>
                         <SwitchButton
                             options={["Monthly", "Yearly"]}
                             name="period"
@@ -98,7 +93,7 @@ function App() {
                             handleChange={handleChange}
                         />
                     </Page>
-                    <Page title="Third Page" text="this is the first page">
+                    <Page title="Third Page" text="this is the first page" open>
                         <div></div>
                     </Page>
                 </MultiPagedFrom>

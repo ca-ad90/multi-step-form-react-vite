@@ -1,6 +1,10 @@
 .content {
     margin-top: 35px;
 }
+.content > div,
+.content > label {
+    margin-bottom: 25px;
+}
 h1:focus,
 h1:focus-within {
     outline: 0;

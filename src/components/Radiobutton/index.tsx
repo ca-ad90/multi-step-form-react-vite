@@ -1,5 +1,5 @@
 import styles from "./Radiobutton.module.scss";
-import { useEffect, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 interface RadiobuttonProps {
     price: [number, number];
     label: string;
@@ -82,4 +82,21 @@ export function Radiobutton({
             }`}</span>
         </label>
     );
+}
+
+export function RadioGroup({
+    children,
+    ...props
+}: HTMLAttributes<HTMLInputElement>) {
+    const style = props.style
+        ? props.style
+        : {
+              display: "flex",
+              gap: "1rem",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              width: "100%",
+          };
+    return <div style={style}>{children}</div>;
 }
