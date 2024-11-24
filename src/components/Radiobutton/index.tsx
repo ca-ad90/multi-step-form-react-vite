@@ -75,7 +75,9 @@ export function Radiobutton({
             <div className={styles.textContainer}></div>
             <span className={styles.text}>{label} </span>
             <span className={styles.descr}>{`$${currentPrice}/${
-                (form && form.period && (form.period as string).substring(2)) ||
+                (form &&
+                    form.period &&
+                    (form.period as string).substring(0, 2)) ||
                 "mo"
             }`}</span>
         </label>

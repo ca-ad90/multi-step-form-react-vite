@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { FormContext } from "../formContext";
+import { FormContext } from "../contexts/formContext";
 export function useFormHook(context: typeof FormContext) {
     const [formState, setFormState] = useState({});
     const { form, setForm } = useContext(context);

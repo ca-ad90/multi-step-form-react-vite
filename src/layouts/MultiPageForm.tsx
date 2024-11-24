@@ -3,9 +3,9 @@ import { ReactElement, useRef, useState } from "react";
 import ProgressSidebar from "./ProgressSidebar";
 import MainContentContainer from "./MainContentContainer";
 /*
-Alternative way to share page state between components
-import { currentPageContext } from "../currentContext";
- */
+Alternative way to share page state between components*/
+import { pageContext } from "../contexts/pageContext";
+
 export default function MultiPageForm({
     children,
 }: {
@@ -34,20 +34,22 @@ export default function MultiPageForm({
     };
     return (
         <>
-            <form ref={form} className="multi-page-form">
-                {/*           <currentPageContext.Provider value={{ pages, setPages }}> */}
-                <ProgressSidebar
-                    pages={pages}
-                    titles={["your info", "my Info", "their info"]}
-                    handlePageChange={handlePageChange}
-                />
-                <MainContentContainer
-                    handlePageChange={handlePageChange}
-                    pages={pages}>
-                    {children}
-                </MainContentContainer>
-                {/*         </currentPageContext.Provider> */}
-            </form>
+            <pageContext.Provider value={{ pages, setPages }}>
+                <form ref={form} className="multi-page-form">
+                    {/*           <currentPageContext.Provider value={{ pages, setPages }}> */}
+                    <ProgressSidebar
+                        pages={pages}
+                        titles={["your info", "my Info", "their info"]}
+                        handlePageChange={handlePageChange}
+                    />
+                    <MainContentContainer
+                        handlePageChange={handlePageChange}
+                        pages={pages}>
+                        {children}
+                    </MainContentContainer>
+                    {/*         </currentPageContext.Provider> */}
+                </form>
+            </pageContext.Provider>
         </>
     );
 }

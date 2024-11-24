@@ -6,6 +6,7 @@ import {
     ReactElement,
     ReactNode,
     useRef,
+    useState,
 } from "react";
 import Page from "./Page";
 //import { currentPageContext } from "../currentContext";
@@ -20,8 +21,11 @@ export default function MainContentContainer({
     children,
 }: MainContentContainerProps) {
     //const { currentPage, setCurrentPage } = useContext(currentPageContext);
+    const [isReverse, setIsReverse] = useState(false);
     const fieldSet = useRef<(HTMLFieldSetElement | null)[]>([]);
     function changePage(nextPage: number) {
+        setIsReverse(nextPage < pages.current);
+        console.log("reverse", isReverse);
         console.log(nextPage, { x: fieldSet.current[pages.current] });
         console.log(
             fieldSet.current[pages.current] && nextPage > pages.current,
@@ -58,12 +62,23 @@ export default function MainContentContainer({
                                     fieldSet.current[index] = e;
                                 }}
                                 key={index}
-                                style={{
-                                    display:
+                                className={`${
+                                    index === pages.current ? "show" : "hide"
+                                } ${isReverse ? "reverse" : ""} ${
+                                    index < pages.current
+                                        ? "next"
+                                        : index > pages.current
+                                        ? "prev"
+                                        : "current"
+                                }`}
+                                style={
+                                    {
+                                        /* display:
                                         index === pages.current
                                             ? "block"
-                                            : "none",
-                                }}>
+                                            : "none", */
+                                    }
+                                }>
                                 {isValidElement(child) &&
                                     cloneElement(
                                         child as ReactElement<typeof Page>,

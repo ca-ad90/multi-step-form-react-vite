@@ -2,7 +2,7 @@ import "./App.scss";
 import MultiPagedFrom from "./layouts/MultiPageForm";
 import { Input } from "./components/Input";
 import Page from "./layouts/Page";
-import { FormContext } from "./formContext";
+import { FormContext } from "./contexts/formContext";
 import { useFormHook } from "./hooks/useFromHook";
 import OverLay from "./layouts/OverLay";
 import { Radiobutton } from "./components/Radiobutton";
