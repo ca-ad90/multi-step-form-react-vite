@@ -1,21 +1,26 @@
+import { FormContext } from "../../contexts/formContext";
+import { useFormHook } from "../../hooks/useFromHook";
 import styles from "./Radiobutton.module.scss";
-import { HTMLAttributes, useEffect, useState } from "react";
+import { HTMLAttributes, useEffect } from "react";
+type obj = { [key: string]: string | number };
 interface RadiobuttonProps {
-    price: [number, number];
+    optValue: number | string;
     label: string;
     icon: string;
     name: string;
     form?: { [key: string]: string | string[] | number | number[] };
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    text?: string;
+    value: string | string[] | obj | obj[];
 }
 export function Radiobutton({
     name,
     label,
-    price,
+    optValue,
     icon,
-    form,
-    handleChange,
+    text,
+    value,
 }: RadiobuttonProps) {
+    const { form, change } = useFormHook(FormContext);
     function idGen() {
         let str = "";
         const randomChar = (type: number) => {
@@ -51,12 +56,7 @@ export function Radiobutton({
         return str;
     }
     const id = `${name}-${idGen()}`;
-    const [currentPrice, setCurrentPrice] = useState(price[0]);
-    useEffect(() => {
-        if (form && (form!["period"] as string) === "year") {
-            setCurrentPrice(price[0]);
-        }
-    }, [form]);
+
     return (
         <label htmlFor={id} className={styles.label}>
             <input
@@ -66,20 +66,25 @@ export function Radiobutton({
                 name={name}
                 className={styles.radio}
                 required
-                value={currentPrice}
-                onChange={handleChange}
+                value={value as string}
+                onChange={(e) => {
+                    let val;
+                    try {
+                        val = JSON.parse(e.target.value);
+                    } catch {
+                        val = e.target.value;
+                    }
+                    change.event(name, val);
+                }}
             />
             <div className={styles.icon}>
                 <img src={icon} alt="" />
             </div>
-            <div className={styles.textContainer}></div>
-            <span className={styles.text}>{label} </span>
-            <span className={styles.descr}>{`$${currentPrice}/${
-                (form &&
-                    form.period &&
-                    (form.period as string).substring(0, 2)) ||
-                "mo"
-            }`}</span>
+            <div className={styles.textContainer}>
+                <span className={styles.text}>{label} </span>
+                <span className={styles.descr}>{optValue}</span>
+                <p className={styles.optionalText}> {text}</p>
+            </div>
         </label>
     );
 }
@@ -97,6 +102,7 @@ export function RadioGroup({
               justifyContent: "center",
               height: "100%",
               width: "100%",
+              position: "relative",
           };
-    return <div style={style}>{children}</div>;
+    return <fieldset style={style}>{children}</fieldset>;
 }

@@ -1,5 +1,7 @@
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import styles from "./Input.module.scss";
+import { useFormHook } from "../../hooks/useFromHook";
+import { FormContext } from "../../contexts/formContext";
 export interface InputProps {
     label: string;
     name: string;
@@ -9,7 +11,6 @@ export interface InputProps {
     errorMessage?: string;
     required?: boolean;
     disabled?: boolean;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 export function Input({
     label,
@@ -20,28 +21,33 @@ export function Input({
     errorMessage,
     required,
     disabled,
-    handleChange,
 }: InputProps) {
+    const { change } = useFormHook(FormContext);
     const [invalid, setInvalid] = useState(false);
-
     const [errMsg, setErrMsg] = useState("");
     function checkInput(e: React.ChangeEvent<HTMLInputElement>) {
         let isInvalid = false;
         let err;
-        if (required && !e.target.value) {
+        const { name, value } = e.target;
+        console.log("checkStart", !value);
+        if (required && !value) {
+            console.log("req:emptuy");
             isInvalid = true;
             err = "This field is required";
         } else {
             switch (type) {
                 case "email":
-                    isInvalid = !validateEmail(e.target.value);
+                    console.log("type:email", value);
+                    isInvalid = !validateEmail(value);
                     err = "Please enter a valid email";
                     break;
                 case "phone":
-                    isInvalid = !validatePhone(e.target.value);
+                    console.log("type:phone", value);
+                    isInvalid = !validatePhone(value);
                     err = "Please enter a valid phone number";
                     break;
                 default:
+                    console.log("type:default", value);
                     err = "Invalid input";
                     break;
             }
@@ -50,8 +56,10 @@ export function Input({
         if (isInvalid) {
             setErrMsg(err);
             e.target.setCustomValidity(err);
+            change.value(name, null);
         } else {
             e.target.setCustomValidity("");
+            change.event(e);
         }
         setInvalid(isInvalid);
         return;
@@ -85,7 +93,7 @@ export function Input({
                     type={type}
                     placeholder={placeholder}
                     onBlur={checkInput}
-                    onChange={handleChange}
+                    onChange={change.event}
                     required={required}
                     disabled={disabled}
                     className={[

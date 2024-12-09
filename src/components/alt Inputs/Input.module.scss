@@ -1,0 +1,41 @@
+@use "../../styles/variables" as *;
+.label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    .title,
+    .errorMsg {
+        font-size: 14px;
+        line-height: 1.4;
+        display: inline-block;
+    }
+    .title {
+        font-weight: 500;
+    }
+    .errorMsg {
+        font-weight: 800;
+        color: $red;
+    }
+    .textContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+    .input {
+        width: 100%;
+        font-weight: 800;
+        line-height: 1.5em;
+        padding: 10px 15px;
+        border-radius: 0.5em;
+        margin-top: 5px;
+        border: 2px solid $light-gray;
+        cursor: pointer;
+        &:focus {
+            border: 2px solid $blue-medium;
+            outline: none;
+        }
+    }
+}
+.isInvalid {
+    border-color: $red !important;
+}

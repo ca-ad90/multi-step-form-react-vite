@@ -1,21 +1,23 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { FormContext } from "../contexts/formContext";
-export function useFormHook(context: typeof FormContext) {
-    const [formState, setFormState] = useState({});
+import { useContext, Context } from "react";
+import { FormContextProps } from "../contexts/formContext";
+
+export function useFormHook(context: Context<FormContextProps>) {
     const { form, setForm } = useContext(context);
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target as HTMLInputElement;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
-        setForm({
-            ...form,
-            [name]: value,
-        });
-    };
-    useEffect(() => {
-        console.log("oinHook", form);
-    }, [form]);
-    return { form, handleChange, state: [formState, setFormState] } as const;
+    function updateValue(
+        name: string,
+        value: string | number | string[] | number[] | null,
+        valid = true,
+    ) {
+        setForm({ ...form, [name]: { value: value, valid: valid } });
+        console.log("form:", form);
+    }
+
+    /*     useEffect(()=>{
+        setForm(formState)
+        console.log("\n--fired on formState change--")
+        console.log("form:", form);
+        console.log("formState", formState);
+        console.log("----------\n")
+    },[formState]) */
+    return { form, updateValue, setForm } as const;
 }

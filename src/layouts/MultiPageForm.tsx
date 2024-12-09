@@ -1,55 +1,85 @@
 import "./MultiPageForm.scss";
-import { ReactElement, useRef, useState } from "react";
+import {
+    cloneElement,
+    isValidElement,
+    ReactElement,
+    useRef,
+    useState,
+} from "react";
 import ProgressSidebar from "./ProgressSidebar";
-import MainContentContainer from "./MainContentContainer";
-/*
-Alternative way to share page state between components*/
-import { pageContext } from "../contexts/pageContext";
+
+import { FormContext } from "../contexts/formContext";
+import { useFormHook } from "../hooks/useFromHook";
+import { Button } from "../components/Button";
+import styles from "./MainContentContainer.module.scss";
 
 export default function MultiPageForm({
     children,
+    pageNames,
 }: {
     children: ReactElement[];
+    pageNames?: string[];
 }) {
-    const [pages, setPages] = useState({
-        current: 0,
-        length: children.length,
-    });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-    const form = useRef<HTMLFormElement>(null);
-
+    useFormHook(FormContext);
+    const [formState, setFormState] = useState({});
+    const formRef = useRef<HTMLFormElement>(null);
+    const [currentPage, setCurrentPage] = useState(0);
     const handlePageChange = (nextPage: number) => {
-        console.log(nextPage);
         const newPage =
             nextPage < 0
                 ? 0
                 : nextPage > children.length
                 ? children.length
                 : nextPage;
-        setPages({
-            ...pages,
-            current: newPage,
-        });
+        setCurrentPage(newPage);
     };
     return (
         <>
-            <pageContext.Provider value={{ pages, setPages }}>
-                <form ref={form} className="multi-page-form">
-                    {/*           <currentPageContext.Provider value={{ pages, setPages }}> */}
+            <FormContext.Provider
+                value={{ form: formState, setForm: setFormState }}>
+                <form ref={formRef} className="multi-page-form">
                     <ProgressSidebar
-                        pages={pages}
-                        titles={["your info", "my Info", "their info"]}
+                        currentPage={currentPage}
+                        titles={
+                            pageNames
+                                ? pageNames
+                                : children.map((e) => e.props.title)
+                        }
                         handlePageChange={handlePageChange}
                     />
-                    <MainContentContainer
-                        handlePageChange={handlePageChange}
-                        pages={pages}>
-                        {children}
-                    </MainContentContainer>
-                    {/*         </currentPageContext.Provider> */}
+                    <div className={styles.mainContent}>
+                        <div className={styles.mainWrapper}>
+                            {children.map((e, i) => {
+                                if (isValidElement(e)) {
+                                    return (
+                                        <fieldset
+                                            key={i}
+                                            className={`${
+                                                currentPage == i
+                                                    ? "show"
+                                                    : "hide"
+                                            }`}>
+                                            {cloneElement(e)}
+                                        </fieldset>
+                                    );
+                                }
+                                return null;
+                            })}
+
+                            <div className={styles.buttonWrapper}>
+                                <Button secondary onClick={() => {}}>
+                                    Go Back
+                                </Button>
+                                <Button
+                                    onClick={() => {}}
+                                    disabled={currentPage == children.length}>
+                                    Next Step
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
-            </pageContext.Provider>
+            </FormContext.Provider>
         </>
     );
 }

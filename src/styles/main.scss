@@ -18,25 +18,45 @@ button:focus-visible {
     --broder-color: green;
     @include focusPseudo;
 }
-
+input:placeholder-shown {
+    font-weight: 400 !important;
+}
 fieldset {
-    position: relative;
-    transition: all 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
     &.hide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        opacity: 0;
+        animation-name: slideOut;
         &.prev {
-            translate: 50px 0;
+            --translate: 50px 0px;
         }
         &.next {
-            translate: -50px 0;
+            --translate: -50px 0px;
         }
     }
     &.show {
+        animation-name: slideIn;
+    }
+}
+@keyframes slideIn {
+    from {
+        opacity: 0;
+    }
+    to {
         opacity: 1;
-        translate: 0 0;
+        translate: 0px 0px;
+    }
+}
+@keyframes slideOut {
+    from {
+        translate: 0px 0px;
+    }
+    to {
+        opacity: 0;
+        display: none;
     }
 }

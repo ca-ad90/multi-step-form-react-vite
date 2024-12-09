@@ -1,3 +1,5 @@
+@use "sass:list";
+@use "sass:map";
 $blue-dark: hsl(213, 96%, 18%);
 $blue-medium: hsl(243, 100%, 62%);
 $blue-light: hsl(228, 100%, 84%);
@@ -13,6 +15,7 @@ $font-family-primary: "Ubuntu", sans-serif;
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
+
 $font-size-xs: 0.75rem; /* 12px */
 $font-size-sm: 0.875rem; /* 14px */
 $font-size-base: 1rem; /* 16px */
@@ -26,6 +29,7 @@ $color-text-secondary: $gray;
 
 $color-background-primary: $magnolia;
 $color-background-secondary: $alabaster;
+
 @mixin glass-effect($color: $grey, $opacity: 0.2) {
     &::before {
         $color-dark: color-mix(in oklab, color-mix(in oklab, $color 50%, black 50%) 50%, transparent 0%);

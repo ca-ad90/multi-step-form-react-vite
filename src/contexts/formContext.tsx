@@ -1,6 +1,12 @@
 import { createContext } from "react";
-type formType = {
-    [key: string]: string;
+export type obj = {
+    [key: string]: string | number | string[] | number[] | null;
+};
+export type formType = {
+    [key: string]: {
+        value: string | number | string[] | number[] | null | obj | obj[];
+        valid: boolean;
+    };
 };
 export interface FormContextProps {
     form: formType;

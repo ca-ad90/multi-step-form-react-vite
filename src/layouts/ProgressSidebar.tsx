@@ -1,11 +1,11 @@
 import style from "./ProgressSidebar.module.scss";
 interface ProgressSidebarProps {
-    pages: { current: number; length: number };
+    currentPage: number;
     titles: string[];
     handlePageChange: (page: number) => void;
 }
 export default function ProgressSidebar({
-    pages,
+    currentPage,
     handlePageChange,
     titles,
 }: ProgressSidebarProps) {
@@ -19,7 +19,7 @@ export default function ProgressSidebar({
                         aria-label={`Step ${i + 1}: ${title}`}
                         onClick={() => handlePageChange(i)}
                         className={`${style.sidebar__steps} ${
-                            pages.current == i ? style.active : ""
+                            currentPage == i ? style.active : ""
                         }`}
                         key={i + 1}>
                         <div className={style.icon}>{i + 1}</div>

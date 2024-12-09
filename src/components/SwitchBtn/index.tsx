@@ -1,17 +1,13 @@
+import { FormContext } from "../../contexts/formContext";
+import { useFormHook } from "../../hooks/useFromHook";
 import styles from "./switchBtn.module.scss";
-import { ChangeEvent, useEffect, useRef } from "react";
+import { useRef } from "react";
 export interface SwitchBtnProps {
-    options: string[];
+    options: { label: string; value: string | number }[];
     name: string;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    form?: { [key: string]: string | string[] | number | number[] };
 }
-export function SwitchButton({
-    options,
-    name,
-    handleChange,
-    form,
-}: SwitchBtnProps) {
+export function SwitchButton({ options, name }: SwitchBtnProps) {
+    const { change } = useFormHook(FormContext);
     const inputs = useRef<HTMLInputElement[]>([]);
     function switchOption() {
         if (inputs.current) {
@@ -22,20 +18,20 @@ export function SwitchButton({
             }
         }
     }
-    useEffect(() => {
-        console.log(form);
-    }, [form]);
+
     return (
         <div className={styles.container}>
             <label className={[styles.alt1, styles.label].join(" ")}>
-                {options[0]}
+                {options[0].label}
                 <input
                     ref={(el) => (inputs.current[0] = el!)}
                     type="radio"
                     name={name}
-                    value={options[0].toLowerCase()}
-                    onInput={handleChange}
-                    onChange={handleChange}
+                    value={options[0].value}
+                    onInput={change.event}
+                    checked={
+                        inputs.current[0] ? inputs.current[0].checked : true
+                    }
                 />
             </label>
             <button
@@ -45,13 +41,13 @@ export function SwitchButton({
                 <div className={styles.ball}></div>
             </button>
             <label className={[styles.alt2, styles.label].join(" ")}>
-                {options[1]}
+                {options[1].label}
                 <input
                     ref={(el) => (inputs.current[1] = el!)}
                     type="radio"
                     name={name}
-                    value={options[1].toLowerCase()}
-                    onInput={handleChange}
+                    value={options[1].value}
+                    onInput={change.event}
                 />
             </label>
         </div>
