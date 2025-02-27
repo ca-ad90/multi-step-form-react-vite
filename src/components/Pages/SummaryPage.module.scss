@@ -1,0 +1,40 @@
+@use "../../styles/variables" as *;
+.grid_container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    p.row {
+        font-size: inherit;
+        grid-column: -1/1;
+        display: inherit;
+        grid-template-columns: inherit;
+        grid-template-columns: inherit;
+        padding-bottom: 1.25em;
+    }
+    &.line {
+        padding-bottom: 1.25em;
+        border-bottom: 1px $gray solid;
+    }
+}
+.col_4 {
+    grid-column: span 4;
+}
+.row {
+    @for $i from 1 through 10 {
+        &_#{$i} {
+            grid-row: $i;
+        }
+        &_span#{$i} {
+            grid-row: span $i;
+        }
+    }
+}
+p {
+    align-content: center;
+    justify-content: end;
+}
+.price {
+    color: inherit;
+    font-weight: 700;
+    text-align: end;
+}

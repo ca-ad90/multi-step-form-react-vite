@@ -4,10 +4,12 @@ $button-secondary-color: $white;
 .button {
     position: relative;
     font-weight: 500;
-    border-radius: 0.5rem;
+    border-radius: 0.5em;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     box-shadow: inset 0px 0px 0px 0px transparent;
+    padding: 1em 1.25em;
+    font-size: 1rem;
     &:focus-visible {
         &::before {
             content: "";
@@ -24,7 +26,7 @@ $button-secondary-color: $white;
     &[data-type="secondary"] {
         --button-color: #{$button-secondary-color};
         color: $gray;
-        padding: 15px 0px;
+
         &:hover {
             color: $black;
         }
@@ -32,7 +34,7 @@ $button-secondary-color: $white;
     &[data-type="primary"] {
         --button-color: #{$button-primary-color};
         color: $white;
-        padding: 15px 20px;
+
         &:hover,
         &:active {
             --button-color: #{$blue-medium};
@@ -52,4 +54,9 @@ $button-secondary-color: $white;
         transition: inherit;
     }
     background-color: var(--button-color);
+}
+@media screen and (400px > width) {
+    .button {
+        font-size: 0.85rem;
+    }
 }

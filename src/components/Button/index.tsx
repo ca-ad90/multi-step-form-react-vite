@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 import style from "./Button.module.scss";
 export interface ButtonProps {
     secondary?: boolean;
     type?: "button" | "submit" | "reset";
-    onClick?: () => void;
+    onClick?: (event: MouseEvent) => void;
     disabled?: boolean;
     children?: ReactNode;
 }

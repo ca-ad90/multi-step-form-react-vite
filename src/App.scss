@@ -5,12 +5,27 @@ $directions: (
     b: bottom,
     r: right
 );
+$color-list: (
+    blue-dark: $blue-dark,
+    blue-medium: $blue-medium,
+    blue-light: $blue-light,
+    blue-light2: $blue-light2,
+    red: $red,
+    gray: $gray,
+    light-gray: $light-gray,
+    magnolia: $magnolia,
+    alabaster: $alabaster,
+    white: $white,
+    black: $black
+);
+
 .f {
     &s {
         $fs-map: (
-            xs: #{$font-size-xs},
+            xs: $font-size-xs,
             sm: $font-size-sm,
-            base: $font-size-base,
+            sl: $font-size-sl,
+            base: 1rem,
             md: $font-size-md,
             lg: $font-size-lg,
             xl: $font-size-xl,
@@ -34,6 +49,9 @@ $directions: (
             }
         }
     }
+    &-underline {
+        text-decoration: wavy;
+    }
 }
 $mp: (
     m: margin,
@@ -41,7 +59,7 @@ $mp: (
 );
 @each $class, $prop in $mp {
     .#{$class} {
-        @for $i from 1 through 10 {
+        @for $i from 0 through 10 {
             $len: $i * 5;
             &-#{$len} {
                 #{$prop}: #{$len}px;
@@ -59,6 +77,9 @@ $mp: (
                     &-#{$len} {
                         #{$prop}-#{$dir}: #{$len}px;
                     }
+                    &-#{$len}-i {
+                        #{$prop}-#{$dir}: #{$len}px !important;
+                    }
                 }
             }
         }
@@ -69,4 +90,19 @@ $mp: (
 }
 .bg-secondary {
     background-color: $color-background-secondary;
+}
+@each $name, $color in $color-list {
+    .bg-#{$name} {
+        background-color: #{$color};
+    }
+    .clr-#{$name} {
+        color: #{$color};
+    }
+}
+.link {
+    color: $gray;
+    text-decoration: underline;
+    &:hover {
+        color: $blue-medium;
+    }
 }

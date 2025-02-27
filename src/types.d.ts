@@ -13,7 +13,7 @@ export interface pageInputs {
     placeholder?: string;
     text?: string;
 }
-// eslint-disable-next-line @typescript-eslint/no-wrapper-object-types
+
 export interface pageInfoType {
     title: string;
     subTitle: string;

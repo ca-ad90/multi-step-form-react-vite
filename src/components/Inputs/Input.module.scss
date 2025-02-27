@@ -3,7 +3,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 25px;
     .title,
     .errorMsg {
         font-size: 14px;
@@ -38,4 +37,17 @@
 }
 .isInvalid {
     border-color: $red !important;
+}
+@media screen and (400px > width) {
+    .label {
+        .title,
+        .errorMsg {
+            font-size: 0.75rem;
+            line-height: 1.23rem;
+        }
+        .input {
+            line-height: 1.25rem;
+            margin-top: 0;
+        }
+    }
 }

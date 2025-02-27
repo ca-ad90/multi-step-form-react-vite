@@ -1,73 +1,85 @@
 @use "variables" as *;
-@font-face {
-    font-family: Ubuntu;
-    src: url(../assets/fonts/Ubuntu-Regular.ttf);
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: Ubuntu;
-    src: url(../assets/fonts/Ubuntu-Medium.ttf);
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: Ubuntu;
-    src: url(../assets/fonts/Ubuntu-Bold.ttf);
-    font-weight: 700;
-    font-style: normal;
-}
+@layer base {
+    @font-face {
+        font-family: Ubuntu;
+        src: url(../assets/fonts/Ubuntu-Regular.ttf);
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: Ubuntu;
+        src: url(../assets/fonts/Ubuntu-Medium.ttf);
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: Ubuntu;
+        src: url(../assets/fonts/Ubuntu-Bold.ttf);
+        font-weight: 700;
+        font-style: normal;
+    }
+    html {
+        font-size: $font-size-base;
+    }
 
-body {
-    font-family: $font-family-primary;
-    font-weight: $font-weight-regular;
-    font-size: $font-size-base;
-    color: $color-text-primary;
-    line-height: 1.25;
-}
+    body {
+        font-family: $font-family-primary;
+        font-weight: $font-weight-regular;
+        font-size: $font-size-base;
+        color: $color-text-primary;
+        line-height: 1.25;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: $font-weight-bold;
-}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: $font-weight-bold;
+    }
 
-h1 {
-    font-size: $font-size-xxl;
-    margin-bottom: 0.25em;
-}
+    h1 {
+        font-size: $font-size-xxl;
+        margin-bottom: 0.25rem;
+    }
 
-h2 {
-    font-size: $font-size-xl;
-}
+    h2 {
+        font-size: $font-size-xl;
+    }
 
-h3 {
-    font-size: $font-size-lg;
-}
+    h3 {
+        font-size: $font-size-lg;
+    }
 
-h4 {
-    font-size: $font-size-md;
-}
+    h4 {
+        font-size: $font-size-md;
+    }
 
-h5 {
-    font-size: $font-size-base;
-}
+    h5 {
+        font-size: $font-size-base;
+    }
 
-h6 {
-    font-size: $font-size-sm;
-}
+    h6 {
+        font-size: $font-size-sm;
+    }
 
-p {
-    font-size: $font-size-base;
-    line-height: 1.5;
-}
+    p {
+        font-size: $font-size-base;
+        line-height: 1.5;
+        color: $gray;
+    }
 
-small {
-    font-size: $font-size-xs;
-}
-input:placeholder-shown {
-    color: $color-text-secondary;
+    small {
+        font-size: $font-size-xs;
+    }
+    input:placeholder-shown {
+        color: $color-text-secondary;
+    }
+    @media screen and (400px > width) {
+        h1 {
+            font-size: $font-size-xl;
+            margin-bottom: 0.5rem;
+        }
+    }
 }

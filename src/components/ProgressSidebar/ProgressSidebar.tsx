@@ -12,6 +12,7 @@ export default function ProgressSidebar({
     return (
         <>
             <div className={style.progressSidebar}>
+                <img src="" alt="" />
                 {titles.map((title, i) => (
                     <button
                         type="button"
@@ -22,10 +23,29 @@ export default function ProgressSidebar({
                             currentPage == i ? style.active : ""
                         }`}
                         key={i + 1}>
-                        <div className={style.icon}>{i + 1}</div>
+                        <div
+                            className={
+                                currentPage == i
+                                    ? style.icon_selected
+                                    : style.icon
+                            }>
+                            {i + 1}
+                        </div>
                         <div className={style.text}>
-                            <p className={style.step}>{`STEP ${i + 1}`}</p>
-                            <p style={{ fontWeight: 800 }}>
+                            <p
+                                className={[
+                                    currentPage == i
+                                        ? "clr-light-gray"
+                                        : "clr-gray",
+                                    style.step,
+                                ].join(" ")}>{`STEP ${i + 1}`}</p>
+                            <p
+                                className={"fs-sm"}
+                                style={{
+                                    color: "white",
+                                    fontWeight: 800,
+                                    letterSpacing: ".1em",
+                                }}>
                                 {title.toUpperCase()}
                             </p>
                         </div>

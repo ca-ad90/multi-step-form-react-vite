@@ -21,10 +21,18 @@ button:focus-visible {
 input:placeholder-shown {
     font-weight: 400 !important;
 }
-fieldset {
-    position: absolute;
+fieldset.invalid {
+    border: 3px solid $red;
+    border-radius: 10px;
+}
+.flow > * + * {
+}
+fieldset.page {
+    position: relative;
     top: 0;
     left: 0;
+    grid-row: 1;
+    grid-column: 1;
     width: 100%;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
@@ -59,4 +67,6 @@ fieldset {
         opacity: 0;
         display: none;
     }
+}
+@media screen and (400px > width) {
 }

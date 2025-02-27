@@ -9,16 +9,18 @@ $gray: hsl(231, 11%, 63%);
 $light-gray: hsl(229, 24%, 87%);
 $magnolia: hsl(217, 100%, 97%);
 $alabaster: hsl(231, 100%, 99%);
-$white: hsla(0, 0%, 100%, 0.95);
-$black: hsla(0, 0%, 0%, 0.8);
+$white: hsla(0, 0%, 100%);
+$black: hsla(0, 0%, 0%);
+
 $font-family-primary: "Ubuntu", sans-serif;
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 
-$font-size-xs: 0.75rem; /* 12px */
+$font-size-xs: 0.8rem; /* 12px */
 $font-size-sm: 0.875rem; /* 14px */
-$font-size-base: 1rem; /* 16px */
+$font-size-sl: 0.9rem; /* 14px */
+$font-size-base: 1rem;
 $font-size-md: 1.125rem; /* 18px */
 $font-size-lg: 1.25rem; /* 20px */
 $font-size-xl: 1.5rem; /* 24px */

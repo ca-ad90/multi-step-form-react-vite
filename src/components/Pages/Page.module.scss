@@ -1,0 +1,23 @@
+.content {
+    margin-top: 2rem;
+}
+.content > * {
+    margin-bottom: 1.5rem;
+}
+h1:focus,
+h1:focus-within {
+    outline: 0;
+    border: 0;
+    &::after,
+    &::before {
+        display: none;
+    }
+}
+@media screen and (400px>width) {
+    .content {
+        margin-top: 1rem;
+    }
+    .content > * {
+        margin-bottom: 0.5rem;
+    }
+}
