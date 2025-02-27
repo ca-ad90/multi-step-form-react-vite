@@ -36,7 +36,7 @@ export const TextInputField = ({
     const [, setTextValue] = useSessionStorage(name);
     const { setIsValid, setErrMsg, handleBlur, handleChange } =
         useHandleValidityHook({
-            update: (n, v) => {
+            update: (_n, v) => {
                 setTextValue(v);
             },
             customValidation,
